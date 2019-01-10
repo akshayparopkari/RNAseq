@@ -4,14 +4,12 @@ This bash file that stiches together the preprocessing steps for RNA-seq sequenc
 
 **USAGE and EXAMPLE**
 
-sh pipeline.sh [-h] inputs
-./pipeline.sh [-h] inputs
+1. sh pipeline.sh [-h] inputs
+2. ./pipeline.sh [-h] inputs
 
 **OPTIONS**
 
-inputs: Folder containing all raw sequence FASTQ files, this will be updated in the
-        next version NOTE: Care should be taken to supply full or relative path to the script file (this file) and input 
-        folder.
+inputs: Folder containing all raw sequence FASTQ files
                  
 **REFERENCES**
 
