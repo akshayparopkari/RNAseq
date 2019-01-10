@@ -2,8 +2,8 @@
 
 # For reliable, robust and maintainable bash scripts, start with following commands
 # http://redsymbol.net/articles/unofficial-bash-strict-mode/
-set -euo pipefail
-IFS=$'\n\t'
+# set -euo pipefail
+# IFS=$'\n\t'
 
 #########################################################################################
 # HEADER
@@ -114,9 +114,9 @@ do
   $CMD2
   echo
 
-  # •••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••• #
-  # Step 3: STAR aligns and counts the trimmed reads to the reference genome #
-  # •••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••• #
+  # ••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••• #
+  # Step 3: STAR aligns to  the reference genome and calculates gene counts #
+  # ••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••• #
 
   date '+%a %D %r'; echo -e '\e[4mAligning QC reads to Candida albicans A21 genome\e[0m'
 
