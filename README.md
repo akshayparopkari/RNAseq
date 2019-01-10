@@ -13,7 +13,7 @@ This bash file that stiches together the preprocessing steps for RNA-seq sequenc
 
 **OPTIONS**
 
-inputs: Folder containing all raw sequence FASTQ files
+inputs: Directory containing all raw sequence FASTQ files
 
 ---
 
