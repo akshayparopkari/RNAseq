@@ -19,11 +19,11 @@
 #% ./${SCRIPT_NAME} [-h]  inputs
 #% 
 #% OPTIONS
-#% inputs:    Folder containing all raw sequence FASTQ files, this will be updated in the
+#% inputs:    Directory containing all raw sequence FASTQ files, this will be updated in the
 #%            next version
 #
 #% NOTE: Care should be taken to supply full or relative path to the script file (this
-#%       file) and input folder.
+#%       file) and input directory.
 #% 
 # ---------------------------------------------------------------------------------------
 #+ SCRIPT INFORMATION
@@ -63,16 +63,16 @@ fi
 # Testing for input
 if [[ -z "$1" ]] ; then
     date '+%a %D %r'
-    echo 'Input folder not supplied. Exiting program.'
+    echo 'Input directory not supplied. Please supply a directory with raw FASTQ files'
     exit 1
 fi
 
 
-# Changing working directory to input folder
-dir=$1
-printf "%s\n" "$dir"    # print the folder name which is being processed
-# cd into each folder in the directory
-cd "$dir" || { echo "cd into input folder failed! Please check your working directory." ; exit 1 ; }
+# Changing working directory to input directory
+dir=$(realpath "$1")
+echo -e "\nInput directory:" "$dir"  # print the directory name which is being processed
+# cd into each directory in the directory
+cd "$dir" || { echo "cd into input directory failed! Please check your working directory." ; exit 1 ; }
 
 
 # Starting preprocessing
@@ -81,7 +81,7 @@ do
 
   in_file=$(basename "$f")
 
-  echo -e "\e[1;4mProcessing $in_file"
+  echo -e "\nProcessing $in_file"
   echo
 
   # •••••••••••••••••••••••••••••••••• #
