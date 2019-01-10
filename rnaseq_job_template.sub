@@ -1,0 +1,16 @@
+#!/bin/bash -l
+#SBATCH --mail-user=[ENTER EMAIL ADDRESS]	   # Notifications about job run
+#SBATCH --mail-type=ALL                      # Email notifications on start, end, abort and cancel job status (DO NOT CHANGE)
+#SBATCH --nodes=1                            # 1 node requested (DO NOT CHANGE)
+#SBATCH --ntasks=20                          # 20 CPUs requested (DO NOT CHANGE)
+#SBATCH -p fast.q                            # Using fast.q queue (DO NOT CHANGE)
+#SBATCH --time=0-01:00:00                    # 1 hour wall time limit for job, after an hour the job will be automatically killed
+#SBATCH --output=rnaseq_preprocess.stdout    # Error message ill be saved to this file (DO NOT CHANGE)
+#SBATCH --job-name=[ENTER_JOB_NAME]          # Name of this job run, can be changed as per your convenience (NO_SPACES_PERMITTED)
+#SBATCH --export=ALL						   # Environment variables propogated to job environment
+
+# Load anaconda3 module
+module load anaconda3
+
+# Command to run preprocessing
+# [/PATH/TO/pipeline.sh] [PATH/TO/INPUT_FOLDER] > preprocess.log

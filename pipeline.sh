@@ -81,14 +81,14 @@ do
 
   in_file=$(basename "$f")
 
-  echo -e "\e[1;4mProcessing $in_file\e[0m"
+  echo -e "\e[1;4mProcessing $in_file"
   echo
 
   # •••••••••••••••••••••••••••••••••• #
   # Step 1: Adapter and polyA trimming #
   # •••••••••••••••••••••••••••••••••• #
 
-  date '+%a %D %r'; echo -e '\e[4mAdapter and polyA trimming\e[0m'
+  date '+%a %D %r'; echo -e 'Adapter and polyA trimming'
 
   # Create output file name and command to run
   trimmed_file=$(basename "$f" .fastq)_trimmed.fastq
@@ -103,7 +103,7 @@ do
   # Step 2: Fastqc generates a report of sequencing read quality #
   # •••••••••••••••••••••••••••••••••••••••••••••••••••••••••••• #
 
-  date '+%a %D %r'; echo -e '\e[4mRead quality assessment\e[0m'
+  date '+%a %D %r'; echo -e 'Read quality assessment'
 
   # Create directory to save the quality reports, one per FASTQ file and create command to run
   mkdir -p "$(basename "$f" .fastq)"_qc
@@ -118,7 +118,7 @@ do
   # Step 3: STAR aligns to  the reference genome and calculates gene counts #
   # ••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••• #
 
-  date '+%a %D %r'; echo -e '\e[4mAligning QC reads to Candida albicans A21 genome\e[0m'
+  date '+%a %D %r'; echo -e 'Aligning QC reads to Candida albicans A21 genome'
 
   # Create command to run
   CMD3="STAR --runThreadN 19 --genomeDir /home/aparopkari/rnaseq_pipeline/ca21_genome_index/ --readFilesIn $trimmed_file --outFilterType BySJout --outFilterMultimapNmax 50 --alignSJoverhangMin 8 --alignSJDBoverhangMin 1 --outFilterMismatchNmax 999 --outFilterMismatchNoverLmax 0.6 --alignIntronMin 20 --alignIntronMax 1000000 --alignMatesGapMax 1000000 --outSAMattributes NH HI NM MD --outSAMtype BAM SortedByCoordinate --quantMode GeneCounts --outFileNamePrefix $(basename "$f" .fastq) > $(basename "$f" .fastq)_alignment.log"
@@ -134,7 +134,7 @@ do
 #   Step 4: Read counting with featureCounts #
 #   •••••••••••••••••••••••••••••••••••••••• #
 # 
-#   date '+%a %D %r'; echo -e '\e[4mGetting read counts for aligned reads\e[0m'
+#   date '+%a %D %r'; echo -e 'Getting read counts for aligned reads'
 # 
 #   Get .bam file from previous step and create command to run
 #   bam_file=$(basename $in_file .fastq)Aligned.sortedByCoord.out.bam
