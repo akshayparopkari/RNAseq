@@ -28,7 +28,7 @@
 # ---------------------------------------------------------------------------------------
 #+ SCRIPT INFORMATION
 #
-#+ VERSION: 0.0.2
+#+ VERSION: 0.0.3
 #+ AUTHOR:  Akshay Paropkari
 #+ LICENSE: MIT
 #
@@ -121,28 +121,11 @@ do
   date '+%a %D %r'; echo -e 'Aligning QC reads to Candida albicans A21 genome'
 
   # Create command to run
-  CMD3="STAR --runThreadN 19 --genomeDir /home/aparopkari/rnaseq_pipeline/ca21_genome_index/ --readFilesIn $trimmed_file --outFilterType BySJout --outFilterMultimapNmax 50 --alignSJoverhangMin 8 --alignSJDBoverhangMin 1 --outFilterMismatchNmax 999 --outFilterMismatchNoverLmax 0.6 --alignIntronMin 20 --alignIntronMax 1000000 --alignMatesGapMax 1000000 --outSAMattributes NH HI NM MD --outSAMtype BAM SortedByCoordinate --quantMode GeneCounts --outFileNamePrefix $(basename "$f" .fastq) > $(basename "$f" .fastq)_alignment.log"
+  CMD3="STAR --runThreadN 19 --genomeDir /home/aparopkari/rnaseq_pipeline/ca21_thad_genome_index --readFilesIn $trimmed_file --outFilterType BySJout --outFilterMultimapNmax 50 --alignSJoverhangMin 8 --alignSJDBoverhangMin 1 --outFilterMismatchNmax 999 --outFilterMismatchNoverLmax 0.6 --alignIntronMin 20 --alignIntronMax 1000000 --alignMatesGapMax 1000000 --outSAMattributes NH HI NM MD --outSAMtype BAM SortedByCoordinate --quantMode GeneCounts --outFileNamePrefix $(basename "$f" .fastq) > $(basename "$f" .fastq)_alignment.log"
 
   # Echo and run command
   echo "$CMD3"
   $CMD3
   echo
 
-
-#########################  REPLACED WITH “STAR” GENE COUNTING  ###########################
-#   •••••••••••••••••••••••••••••••••••••••• #
-#   Step 4: Read counting with featureCounts #
-#   •••••••••••••••••••••••••••••••••••••••• #
-# 
-#   date '+%a %D %r'; echo -e 'Getting read counts for aligned reads'
-# 
-#   Get .bam file from previous step and create command to run
-#   bam_file=$(basename $in_file .fastq)Aligned.sortedByCoord.out.bam
-#   CMD4="featureCounts -a /home/aparopkari/rnaseq_pipeline/C_albicans_SC5314_A22_current_features.gtf -t CDS -g gene_id -T 20 -o $(basename "$f" .fastq)_counts.txt $bam_file > $(basename "$f" .fastq)_counts.log"
-#   
-#   Echo and run command
-#   echo “$CMD4”
-#   $CMD4
-#   echo
-#########################  END REPLACED WITH “STAR” GENE COUNTING  #######################
 done
