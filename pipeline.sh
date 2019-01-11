@@ -92,7 +92,7 @@ do
 
   # Create output file name and command to run
   trimmed_file=$(basename "$f" .fastq)_trimmed.fastq
-  CMD1="bbduk.sh in=$in_file out=$trimmed_file ref=/home/aparopkari/bbmap/resources/polyA.fa.gz,/home/aparopkari/bbmap/resources/truseq.fa.gz k=13 ktrim=r useshortkmers=t mink=5 qtrim=r trimq=10 minlength=20 > $(basename "$f" .fastq)_trimmed.log"
+  CMD1="bbduk.sh in=$in_file out=$trimmed_file ref=/home/aparopkari/bbmap/resources/polyA.fa.gz,/home/aparopkari/bbmap/resources/truseq.fa.gz k=13 ktrim=r mink=5 qtrim=r trimq=20 minlength=20"
 
   # Echo and run command
   echo "$CMD1"
@@ -121,7 +121,7 @@ do
   date '+%a %D %r'; echo -e 'Aligning QC reads to Candida albicans A21 genome'
 
   # Create command to run
-  CMD3="STAR --runThreadN 19 --genomeDir /home/aparopkari/rnaseq_pipeline/ca21_thad_genome_index --readFilesIn $trimmed_file --outFilterType BySJout --outFilterMultimapNmax 50 --alignSJoverhangMin 8 --alignSJDBoverhangMin 1 --outFilterMismatchNmax 999 --outFilterMismatchNoverLmax 0.6 --alignIntronMin 20 --alignIntronMax 1000000 --alignMatesGapMax 1000000 --outSAMattributes NH HI NM MD --outSAMtype BAM SortedByCoordinate --quantMode GeneCounts --outFileNamePrefix $(basename "$f" .fastq) > $(basename "$f" .fastq)_alignment.log"
+  CMD3="STAR --runThreadN 20 --genomeDir /home/aparopkari/rnaseq_pipeline/ca21_thad_genome_index --readFilesIn $trimmed_file --outFilterType BySJout --outFilterMultimapNmax 25 --alignSJoverhangMin 8 --alignSJDBoverhangMin 1 --outFilterMismatchNmax 999 --outFilterMismatchNoverLmax 0.3 --alignIntronMin 20 --alignIntronMax 1000000 --alignMatesGapMax 1000000 --outSAMattributes NH HI NM MD --outSAMtype BAM SortedByCoordinate --quantMode GeneCounts --outFileNamePrefix $(basename "$f" .fastq) > $(basename "$f" .fastq)_alignment.log"
 
   # Echo and run command
   echo "$CMD3"
