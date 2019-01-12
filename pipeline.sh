@@ -107,7 +107,7 @@ do
 
   # Create directory to save the quality reports, one per FASTQ file and create command to run
   mkdir -p "$(basename "$f" .fastq)"_qc
-  CMD2="fastqc -t 20 --nogroup -o $(basename "$f" .fastq)_qc $trimmed_file"
+  CMD2="fastqc -t 24 --nogroup -o $(basename "$f" .fastq)_qc $trimmed_file"
 
   # Echo and run command
   echo "$CMD2"
@@ -121,7 +121,7 @@ do
   date '+%a %D %r'; echo -e 'Aligning QC reads to Candida albicans A21 genome'
 
   # Create command to run
-  CMD3="STAR --runThreadN 20 --genomeDir /home/aparopkari/rnaseq_pipeline/ca21_thad_genome_index --readFilesIn $trimmed_file --outFilterType BySJout --outFilterMultimapNmax 25 --alignSJoverhangMin 8 --alignSJDBoverhangMin 1 --outFilterMismatchNmax 999 --outFilterMismatchNoverLmax 0.3 --alignIntronMin 20 --alignIntronMax 1000000 --alignMatesGapMax 1000000 --outSAMattributes NH HI NM MD --outSAMtype BAM SortedByCoordinate --quantMode GeneCounts --outFileNamePrefix $(basename "$f" .fastq) > $(basename "$f" .fastq)_alignment.log"
+  CMD3="STAR --runThreadN 24 --genomeDir /home/aparopkari/rnaseq_pipeline/ca21_genome_index --readFilesIn $trimmed_file --outFilterType BySJout --outFilterMultimapNmax 25 --alignSJoverhangMin 8 --alignSJDBoverhangMin 1 --outFilterMismatchNmax 999 --outFilterMismatchNoverLmax 0.3 --alignIntronMin 20 --alignIntronMax 1000000 --alignMatesGapMax 1000000 --outSAMattributes NH HI NM MD --outSAMtype BAM SortedByCoordinate --quantMode TranscriptomeSAM GeneCounts --outFileNamePrefix $(basename "$f" .fastq) > $(basename "$f" .fastq)_alignment.log"
 
   # Echo and run command
   echo "$CMD3"
