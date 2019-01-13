@@ -9,7 +9,7 @@
 import sys
 import argparse
 from os import walk
-from os.path import join
+from os.path import join, realpath
 
 
 def prog_options():
@@ -32,6 +32,7 @@ def main():
 
     # Initialize variables to store gene counts as {gene_id: {sample_id: count}}
     counts = dict()
+    samples = set()
 
     # Read in all ReadsPerGene.out.tab files
     for root, directory, files in walk(args.input_dir[0]):
@@ -45,6 +46,7 @@ def main():
                 # valid file encountered, process
                 star_file = join(root, f)
                 sample_id = f.replace("ReadsPerGene.out.tab", "")
+                samples.add(sample_id)
                 with open(star_file) as inf:
                     for line in inf:
                         try:
@@ -63,6 +65,25 @@ def main():
                         else:
                             # stats line encountered, skip
                             continue
+
+    # Write out counts to a file
+    samples = sorted(samples)
+    out_fnh = args.output_prefix + "gene_raw_counts.txt"
+    with open(out_fnh, "w") as outf:
+        outf.write("gene_id\t{}\n".format("\t".join(samples)))
+        for gene_id in counts.keys():
+            line_content = [gene_id]
+            for sid in samples:
+                try:
+                    line_content.append(counts[gene_id][sid])
+                except KeyError:
+                    # sample doesn't have counts entry, initialize to 0
+                    line_content.append("0")
+                else:
+                    continue
+            outf.write("{}\n".format("\t".join(line_content)))
+
+    print("Gene counts collected in {}".format(realpath(out_fnh)))
 
 
 if __name__ == "__main__":
