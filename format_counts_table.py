@@ -68,7 +68,7 @@ def main():
 
     # Write out counts to a file
     samples = sorted(samples)
-    out_fnh = args.output_prefix + "gene_raw_counts.txt"
+    out_fnh = join(realpath(args.output_prefix), "gene_raw_counts.txt")
     with open(out_fnh, "w") as outf:
         outf.write("gene_id\t{}\n".format("\t".join(samples)))
         for gene_id in counts.keys():
