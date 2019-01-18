@@ -1,8 +1,6 @@
-RNAseq
-======
+# RNAseq
 
 [![LICENSE](https://img.shields.io/badge/license-BSD%203--Clause-blue.svg?style=plastic)](https://github.com/akshayparopkari/RNAseq/blob/master/LICENSE.md)
-![](https://img.shields.io/github/repo-size/akshayparopkari/RNAseq.svg?label=Repo%20Size&style=social)
 
 **DESCRIPTION**
 
