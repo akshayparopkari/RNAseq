@@ -21,7 +21,7 @@
 #
 #-----------------------------------------------------------------------------
 #
-# DESeq2: http://bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#
+# DESeq2: http://bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html
 #
 ###############################################################################
 
