@@ -32,6 +32,6 @@ inputs: Directory containing all raw sequence FASTQ files
 
 **SCRIPT INFORMATION**
 
-- VERSION: 0.0.2
+- VERSION: 0.0.4
 - AUTHOR: Akshay Paropkari
 - LICENSE: [BSD 3-Clause License](LICENSE.md)
