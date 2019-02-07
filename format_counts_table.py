@@ -1,8 +1,7 @@
 #! /usr/bin/env python
 
 """
-:Abstract: Format gene counts table from STAR for compatibility with voom-limma DGE
-           workflow.
+:Abstract: Format gene counts table from STAR for compatibility with DESeq2
 :Author: Akshay Paropkari
 """
 
@@ -14,9 +13,8 @@ from os.path import join, realpath
 
 def prog_options():
     parser = argparse.ArgumentParser(description="Format gene counts table from STAR for "
-                                     "compatibility with voom-limma DGE workflow. This "
-                                     "script will aggregate all counts files and produce "
-                                     "one output file.")
+                                     "compatibility with DESeq2. This script will aggregate all counts files "
+                                     "and produce one output file.")
     parser.add_argument("input_dir", nargs="*", help="Path to directory containing gene"
                         " counts tables from STAR run. The filenames must end with "
                         "ReadsPerGene.out.tab, which is default STAR behavior.")

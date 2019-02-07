@@ -16,8 +16,8 @@
 #
 # USAGE and EXAMPLE
 #
-# Rscript --vanilla raw_gene_counts_file metadata_file output_MA_filename
-# Rscript --vanilla gene_counts.txt metadata.txt MA_plot.pdf
+# Rscript --vanilla raw_gene_counts_file metadata_file results_file output_MA_file
+# Rscript --vanilla gene_counts.txt metadata.txt deseq2_lfc.txt MA_plot.pdf
 #
 #-----------------------------------------------------------------------------
 #
@@ -25,9 +25,9 @@
 #
 ###############################################################################
 
-library("DESeq2", logical.return=T, quietly = T)
-library("readxl", logical.return=T, quietly = T)
-library("IHW", logical.return=T, quietly = T)
+library("DESeq2", warn.conflicts = FALSE, quietly = T, verbose = F)
+library("readxl", warn.conflicts = FALSE, quietly = T, verbose = F)
+library("IHW", warn.conflicts = FALSE, quietly = T, verbose = F)
 
 # Get all arguments
 args <- commandArgs(trailingOnly=TRUE)
@@ -65,12 +65,14 @@ dds <- dds[keep,]
 dds <- DESeq(dds)
 resIHW <- results(dds, filterFun=ihw, alpha = 0.05)
 print(summary(resIHW))
-print(sum(resIHW$padj < 0.1, na.rm=TRUE))
+print(sum(resIHW$padj < 0.05, na.rm=TRUE))
 print(metadata(resIHW)$ihwResult)
 
 # Obtain  MA plot
 resLFC <- lfcShrink(dds, coef=resultsNames(dds)[2], type="apeglm")
-pdf(file = args[3])
+write.table(as.data.frame(resLFC[order(resLFC$pvalue),]), file=args[3],
+            quote = F, sep = "\t")
+pdf(file = args[4])
 plotMA(resLFC, ylim=c(-2,2))
 abline(h = c(-1, 1), col="dodgerblue", lwd=2)
 dev.off()

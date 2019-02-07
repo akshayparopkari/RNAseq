@@ -159,3 +159,14 @@ mv -t STAR_log/ ./*Log.out ./*Log.progress.out ./*Log.final.out
 date '+%a %D %r'; echo -e 'Output files organized'
 echo
 
+# •••••••••••••••••••••••••••••••••••••••••••••• #
+# Run differential expression analysis with DESeq2 #
+# •••••••••••••••••••••••••••••••••••••••••••••• #
+METADATA=$(find . -type f -name "*metadata*" -exec realpath {} +)
+GENE_COUNTS=$(find . -type f -name "gene_raw_counts.txt" -exec realpath {} +)
+CMD5="Rscript --vanilla /home/aparopkari/rnaseq_pipeline/RNAseq/deseq.R $GENE_COUNTS $METADATA deseq2_lfc.txt MA_plot.pdf"
+
+# Echo and run command
+echo "$CMD5"
+$CMD5
+echo
