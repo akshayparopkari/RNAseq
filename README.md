@@ -4,7 +4,7 @@
 
 **DESCRIPTION**
 
-This bash file that stiches together the preprocessing steps for RNA-seq sequences from 3′RNA-seq project.
+This bash file that stiches together the preprocessing steps for raw RNA-seq data in FASTQ files from 3′RNA-seq project as well as outputs differential gene expression results.
 
 ---
 
@@ -17,7 +17,7 @@ This bash file that stiches together the preprocessing steps for RNA-seq sequenc
 
 **OPTIONS**
 
-inputs: Directory containing all raw sequence FASTQ files
+inputs: Directory containing __all__ raw RNA-seq FASTQ files
 
 ---
 
