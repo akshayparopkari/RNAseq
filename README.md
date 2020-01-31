@@ -8,11 +8,29 @@ This bash file that stiches together the preprocessing steps for raw RNA-seq dat
 
 ---
 
+**INSTALLATION**
+
+You can download this GitHub repository using the following command - 
+
+```sh
+# navigate to desired location on your machine and run -
+
+git clone https://github.com/akshayparopkari/RNAseq.git
+```
+
+---
+
 **USAGE and EXAMPLE**
 
-1. sh pipeline.sh [-h] inputs
-2. ./pipeline.sh [-h] inputs
+```sh
+sh pipeline.sh [-h] inputs
+```
 
+*OR*
+
+```sh
+./pipeline.sh [-h] inputs
+```
 ---
 
 **OPTIONS**
