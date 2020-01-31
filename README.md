@@ -13,9 +13,19 @@ This bash file that stiches together the preprocessing steps for raw RNA-seq dat
 You can download this GitHub repository using the following command - 
 
 ```sh
-# navigate to desired location on your machine and run -
+# Navigate to desired directory to download this folder on your machine
 
 git clone https://github.com/akshayparopkari/RNAseq.git
+```
+
+```sh
+# Making script files executable
+
+cd RNAseq/
+
+chmod u+x pipeline.sh
+
+chmod u+x format_counts_table.py
 ```
 
 ---
