@@ -1,6 +1,6 @@
 BSD 3-Clause License
 
-Copyright (c) 2019, Akshay Paropkari
+Copyright (c) 2020, Akshay Paropkari
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
