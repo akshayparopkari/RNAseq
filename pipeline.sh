@@ -91,7 +91,7 @@ do
 
   # Create output file name and command to run
   trimmed_file=$(basename "$f" .fastq)_trimmed.fastq
-  CMD1="bbduk.sh in=$in_file out=$trimmed_file ref=/home/aparopkari/bbmap/resources/polyA.fa.gz,/home/aparopkari/bbmap/resources/truseq.fa.gz k=13 ktrim=r mink=5 qtrim=r trimq=20 minlength=20"
+  CMD1="bbduk.sh in=$in_file out=$trimmed_file ref=/opt/anaconda_shared_envs/RNA-seq/opt/bbmap-38.76-0/resources/truseq.fa.gz,/opt/anaconda_shared_envs/RNA-seq/opt/bbmap-38.76-0/resources/polyA.fa.gz k=13 ktrim=r mink=5 qtrim=r trimq=20 minlength=20"
 
   # Echo and run command
   echo "\n$(date "+%a %D %r"): $CMD1"
