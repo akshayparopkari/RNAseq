@@ -55,7 +55,8 @@ all(rownames(coldata) == colnames(raw.counts))
 # Create a DGEList object
 dds <- DESeqDataSetFromMatrix(countData = raw.counts, colData = coldata,
                               design = ~ Condition)
-dds$Condition <- factor(dds$Condition, levels = c("Untreated","Treated"))
+dds$Condition <- factor(dds$Condition, levels = c("WT", "Mutant"))
+print(resultsNames(dds))
 
 # Prefiltering out genes that don't have count of at least 10
 keep <- rowSums(counts(dds)) >= 10
