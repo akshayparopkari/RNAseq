@@ -60,6 +60,6 @@ inputs: Directory containing __all__ raw RNA-seq FASTQ files
 
 **SCRIPT INFORMATION**
 
-- VERSION: 0.0.4
+- VERSION: 0.0.5
 - AUTHOR: Akshay Paropkari
 - LICENSE: [BSD 3-Clause License](LICENSE.md)
