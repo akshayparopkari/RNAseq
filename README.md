@@ -6,6 +6,8 @@
 
 This bash file that stiches together the preprocessing steps for raw RNA-seq data in FASTQ files from 3′RNA-seq project as well as outputs differential gene expression results.
 
+The [Wiki](https://github.com/akshayparopkari/RNAseq/wiki) page provides detailed information about the using scripts in this repository.
+
 ---
 
 **INSTALLATION**
