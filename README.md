@@ -10,7 +10,18 @@ The [Wiki](https://github.com/akshayparopkari/RNAseq/wiki) page provides detaile
 
 ---
 
-**INSTALLATION**
+**MERCED SETUP**
+
+This pipeline is implemented on [MERCED](https://github.com/ucmerced/merced-cluster/wiki) as a `RNA-seq` conda environment. MERCED users can log into MERCED and activate the environment to access the pipeline modules.
+
+```sh
+# activate RNA-seq conda evnvironment
+source activate RNA-seq
+```
+
+---
+
+**LOCAL INSTALLATION**
 
 You can download this GitHub repository using the following command - 
 
@@ -62,6 +73,6 @@ inputs: Directory containing __all__ raw RNA-seq FASTQ files
 
 **SCRIPT INFORMATION**
 
-- VERSION: 0.0.5
+- VERSION: 0.0.6
 - AUTHOR: Akshay Paropkari
 - LICENSE: [BSD 3-Clause License](LICENSE.md)
