@@ -28,7 +28,7 @@
 # ---------------------------------------------------------------------------------------
 #+ SCRIPT INFORMATION
 #
-#+ VERSION: 0.0.9
+#+ VERSION: 0.1.0
 #+ AUTHOR:  Akshay Paropkari
 #+ LICENSE: MIT
 #
@@ -151,8 +151,9 @@ echo
 # •••••••••••••••••••••••••••••• #
 
 # Move log files into a directory
-mkdir -p ./STAR_log
+mkdir -p ./STAR_log ./trim_log
 mv -t STAR_log/ ./*Log.out ./*Log.progress.out ./*Log.final.out ./*_STARtmp/ ./*.out.bam ./*.out.tab
+mv -t trim_log/ *_trimmed.fastq
 
 echo -e "\n$(date "+%a %D %r"): Output files organized"
 echo
