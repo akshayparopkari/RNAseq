@@ -1,6 +1,6 @@
 # RNAseq
 
-[![LICENSE](https://img.shields.io/github/license/akshayparopkari/RNAseq)](https://github.com/akshayparopkari/RNAseq/blob/master/LICENSE.md) ![OPEN ISSUES](https://img.shields.io/github/issues/akshayparopkari/RNAseq) ![STARS](https://img.shields.io/github/stars/akshayparopkari/RNAseq) ![TWITTER](https://img.shields.io/twitter/url?label=Twitter&style=social&url=https%3A%2F%2Ftwitter.com%2Fakshayparopkari)
+[![LICENSE](https://img.shields.io/github/license/akshayparopkari/RNAseq)](https://github.com/akshayparopkari/RNAseq/blob/master/LICENSE.md) ![OPEN ISSUES](https://img.shields.io/github/issues/akshayparopkari/RNAseq) ![STARS](https://img.shields.io/github/stars/akshayparopkari/RNAseq)
 
 **DESCRIPTION**
 
