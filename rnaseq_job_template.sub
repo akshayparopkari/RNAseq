@@ -17,4 +17,9 @@ source activate RNA-seq
 
 # Command to run preprocessing and differential gene expression
 INPUTFOLDER=[INSERT FULL PATH TO INPUT DATA FOLDER]
-pipeline.sh "$INPUTFOLDER" > "$INPUTFOLDER"/preprocess.log
+
+# Command to find the pipeline.sh file
+scriptfile=$(find ~ -type f -name "pipeline.sh" -exec realpath {} \;)
+
+# Command to execute the scriptfile
+bash "${scriptfile}" "${INPUTFOLDER}" > "${INPUTFOLDER}"/preprocess.log
