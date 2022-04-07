@@ -31,6 +31,8 @@ You can download this GitHub repository using the following command -
 git clone https://github.com/akshayparopkari/RNAseq.git
 ```
 
+Read more about creating the local Conda environment, required for running the workflow in [section 3](https://github.com/akshayparopkari/RNAseq/wiki/3.-Loading-RNAseq-environment) of the Wiki.
+
 ```sh
 # Making script files executable
 
