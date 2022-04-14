@@ -162,7 +162,7 @@ echo
 # Run differential expression analysis with DESeq2 #
 # •••••••••••••••••••••••••••••••••••••••••••••••• #
 echo -e "\n$(date "+%a %D %r"): Running differential expression analysis using DESeq2"
-METADATA=$(find . -type f -name "*metadata*" -exec realpath {} +)
+METADATA=$(find . -type f -name "*etadata*" -exec realpath {} +)
 GENE_COUNTS=$(find . -type f -name "gene_raw_counts.txt" -exec realpath {} +)
 DESEQ2=$(find ~ -type f -name "deseq.R" -exec realpath {} \;)
 CMD5="${DESEQ2} ${GENE_COUNTS} ${METADATA} ./deseq2_lfc.txt ./MA_plot.pdf"

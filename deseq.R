@@ -39,21 +39,20 @@ if (length(args)==0) {
 
 # Get metadata as input
 coldata <- as.data.frame(read_excel(args[2]))
-row.names(coldata) <- coldata$SampleID
-print(rownames(coldata))
 
 # Read in counts data
 raw.counts <- as.matrix(read.delim(file = args[1], row.names = 1))
 
 # Reorder samples (columns) to match samples (rows) in metadata file
-raw.counts <- raw.counts[, rownames(coldata)]
+raw.counts <- raw.counts[, coldata$Sample_ID]
 
 # MUST BE TRUE
-all(rownames(coldata) %in% colnames(raw.counts))
-all(rownames(coldata) == colnames(raw.counts))
+all(coldata$Sample_ID %in% colnames(raw.counts))
+all(coldata$Sample_ID == colnames(raw.counts))
 
 # Create a DGEList object
-dds <- DESeqDataSetFromMatrix(countData = raw.counts, colData = coldata,
+dds <- DESeqDataSetFromMatrix(countData = raw.counts,
+                              colData = coldata,
                               design = ~ Condition)
 dds$Condition <- factor(dds$Condition, levels = c("WT", "Mutant"))
 print(resultsNames(dds))
@@ -64,16 +63,18 @@ dds <- dds[keep,]
 
 # Run differential expression and get helpful analysis messages
 dds <- DESeq(dds)
-resIHW <- results(dds, filterFun=ihw, alpha = 0.05)
+resIHW <- results(dds, filterFun = ihw, alpha = 0.05)
 print(summary(resIHW))
-print(sum(resIHW$padj < 0.05, na.rm=TRUE))
+print(sum(resIHW$padj < 0.05, na.rm = TRUE))
 print(metadata(resIHW)$ihwResult)
 
 # Obtain  MA plot
-resLFC <- lfcShrink(dds, coef=resultsNames(dds)[2], type="apeglm")
-write.table(as.data.frame(resLFC[order(resLFC$pvalue),]), file=args[3],
-            quote = F, sep = "\t")
+resLFC <- lfcShrink(dds, coef = resultsNames(dds)[2], type="apeglm")
+write.table(resLFC[order(resLFC$padj), ],
+            file = args[3],
+            quote = FALSE,
+            sep = "\t")
 pdf(file = args[4])
-plotMA(resLFC, ylim=c(-2,2))
-abline(h = c(-1, 1), col="dodgerblue", lwd=2)
+plotMA(resLFC, ylim = c(-2,2))
+abline(h = c(-1, 1), col = "dodgerblue", lwd = 2)
 dev.off()
