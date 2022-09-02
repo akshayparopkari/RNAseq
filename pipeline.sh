@@ -15,12 +15,15 @@
 #% from 3"RNA-seq project.
 #%
 #% USAGE and EXAMPLE
-#% sh ${SCRIPT_NAME} [-h] inputs
-#% ./${SCRIPT_NAME} [-h]  inputs
+#% sh ${SCRIPT_NAME} [-h] inputs max_thread_count
+#% ./${SCRIPT_NAME} [-h]  inputs max_thread_count
 #%
 #% OPTIONS
-#% inputs:    Directory containing all raw sequence FASTQ files, this will be updated in the
-#%            next version
+#% inputs: Directory containing all raw sequence FASTQ files, this will be updated in the
+#%         next version
+#% threads: Maximum number of threads to use for processing samples. Maximum thread
+#%          count can be calculated as the product of Thread(s) per core, Core(s) per
+#%          socket, and Socket(s) obtained from lscpu command.
 #
 #% NOTE: Care should be taken to supply full or relative path to the script file (this
 #%       file) and input directory.
@@ -61,7 +64,11 @@ fi
 
 # Testing for input
 if [[ -z "${1}" ]] ; then
-    echo "Input directory not supplied. Please supply a directory with raw FASTQ files"
+    echo -e "Input directory not supplied. Please supply a directory with raw FASTQ files"
+    exit 1
+fi
+if [[ -z "${2}" ]] ; then
+    echo -e "Maximum thread count to use is not specified. Please provide a value for number of threads."
     exit 1
 fi
 
@@ -109,7 +116,7 @@ do
 
   # Create directory to save the quality reports, one per FASTQ file and create command to run
   mkdir -p "${sample_id}"_qc
-  CMD2="fastqc -t 16 --nogroup -o ${sample_id}_qc ${trimmed_file}"
+  CMD2="fastqc -t ${2} --nogroup -o ${sample_id}_qc ${trimmed_file}"
 
   # Echo and run command
   echo "$(date "+%a %D %r") | ${CMD2}"
@@ -122,7 +129,7 @@ do
   echo -e "$(date "+%a %D %r") | Aligning QC reads to Candida albicans A21 genome"
   # Create command to run
   sample_id=$(basename "${f}" .fastq | cut -d_ -f1)
-  CMD3="STAR --runThreadN 16 --genomeDir ${genome_dir} --readFilesIn ${trimmed_file} --outFilterType BySJout --outFilterMultimapNmax 25 --alignSJoverhangMin 8 --alignSJDBoverhangMin 1 --outFilterMismatchNmax 999 --outFilterMismatchNoverLmax 0.3 --alignIntronMin 20 --alignIntronMax 1000000 --alignMatesGapMax 1000000 --outSAMattributes NH HI NM MD --outSAMtype BAM SortedByCoordinate --quantMode GeneCounts --outFileNamePrefix ${sample_id} > $(basename "${f}" .fastq)_alignment.log"
+  CMD3="STAR --runThreadN ${2} --genomeDir ${genome_dir} --readFilesIn ${trimmed_file} --outFilterType BySJout --outFilterMultimapNmax 25 --alignSJoverhangMin 8 --alignSJDBoverhangMin 1 --outFilterMismatchNmax 999 --outFilterMismatchNoverLmax 0.3 --alignIntronMin 20 --alignIntronMax 1000000 --alignMatesGapMax 1000000 --outSAMattributes NH HI NM MD --outSAMtype BAM SortedByCoordinate --quantMode GeneCounts --outFileNamePrefix ${sample_id} > $(basename "${f}" .fastq)_alignment.log"
 
   # Echo and run command
   echo "$(date "+%a %D %r") | ${CMD3}"
