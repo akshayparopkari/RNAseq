@@ -1,6 +1,14 @@
 # RNAseq
 
-[![LICENSE](https://img.shields.io/github/license/akshayparopkari/RNAseq)](https://github.com/akshayparopkari/RNAseq/blob/master/LICENSE.md) ![OPEN ISSUES](https://img.shields.io/github/issues/akshayparopkari/RNAseq) ![STARS](https://img.shields.io/github/stars/akshayparopkari/RNAseq)
+[![LICENSE](https://img.shields.io/github/license/akshayparopkari/RNAseq)](https://github.com/akshayparopkari/RNAseq/blob/master/LICENSE.md)
+
+If you use this tool, please cite us -
+
+```
+Paropkari AD, Bapat PS, Sindi SS, Nobile CJ. A
+Computational Workflow for Analysis of 3' Tag-Seq Data. Curr Protoc. 
+2023 Feb;3(2):e664. doi: 10.1002/cpz1.664. PMID: 36779816.
+```
 
 **DESCRIPTION**
 
