@@ -56,10 +56,10 @@ def main():
                                 assert line[0] in counts.keys()
                             except AssertionError:
                                 # gene_id not initialized, create entry
-                                counts[line[0]] = {sample_id: line[2]}
+                                counts[line[0]] = {sample_id: line[1]}
                             else:
                                 # gene_id entry exists, update with sample_id and count
-                                counts[line[0]][sample_id] = line[2]
+                                counts[line[0]][sample_id] = line[1]
                         else:
                             # stats line encountered, skip
                             continue
